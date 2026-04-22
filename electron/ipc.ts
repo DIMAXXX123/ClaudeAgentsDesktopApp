@@ -24,6 +24,7 @@ function serializeRuntime(rt: AgentRuntime) {
     pid: rt.pid,
     createdAt: rt.createdAt,
     lastActivity: rt.lastActivity,
+    cwd: rt.cwd,
   };
 }
 

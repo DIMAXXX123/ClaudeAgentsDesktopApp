@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import { sfx } from "@/lib/sfx";
 import { AGENTS, agentForRoom } from "@/lib/agents";
 import { useCustomAgents } from "@/lib/rooms/customAgents";
+import { useAgentList } from "@/lib/useAgentList";
 import { RoomCard } from "./RoomCard";
+import { AgentDiffModal } from "./agent/AgentDiffModal";
 
 export const ROOMS = [
   { id: "bridge", name: "COMMAND BRIDGE", color: "#22e8ff", agent: "ULTRON", emoji: "🛡️" },
@@ -34,7 +36,20 @@ export function RoomGrid({
   onClose: (agentId: string) => void;
 }) {
   const [hovered, setHovered] = useState<string | null>(null);
+  const [diffFor, setDiffFor] = useState<{
+    agentName: string;
+    agentColor: string;
+    cwd: string | null;
+  } | null>(null);
   const customAgents = useCustomAgents();
+  const runtimes = useAgentList();
+  const cwdByAgent = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const rt of runtimes) {
+      if (rt.cwd && !map.has(rt.agentId)) map.set(rt.agentId, rt.cwd);
+    }
+    return map;
+  }, [runtimes]);
 
   // Build full room registry (preset + custom), then filter to only active.
   const presetRooms: Room[] = ROOMS;
@@ -92,33 +107,65 @@ export function RoomGrid({
         [ACTIVE CONSOLES]
       </div>
       <div className="grid auto-rows-max grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map(({ room, agentId }) => (
-          <div key={agentId} className="relative">
-            <RoomCard
-              room={room}
-              agentId={agentId}
-              isHovered={hovered === room.id}
-              onHover={setHovered}
-              onEnter={onFocus}
-            />
-            <motion.button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                sfx.select?.();
-                onClose(agentId);
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="absolute right-2 top-2 z-20 flex h-6 w-6 items-center justify-center rounded-sm border border-white/30 bg-black/60 text-[11px] text-white/70 backdrop-blur transition hover:border-red-400 hover:text-red-300"
-              aria-label={`Close ${room.agent} console`}
-              title={`Close ${room.agent} console`}
-            >
-              ×
-            </motion.button>
-          </div>
-        ))}
+        {visible.map(({ room, agentId }) => {
+          const cwd = cwdByAgent.get(agentId) ?? null;
+          return (
+            <div key={agentId} className="relative">
+              <RoomCard
+                room={room}
+                agentId={agentId}
+                isHovered={hovered === room.id}
+                onHover={setHovered}
+                onEnter={onFocus}
+              />
+              {cwd && (
+                <motion.button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    sfx.select?.();
+                    setDiffFor({
+                      agentName: room.agent,
+                      agentColor: room.color,
+                      cwd,
+                    });
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute right-10 top-2 z-20 flex h-6 items-center gap-1 rounded-sm border bg-black/60 px-2 pixel text-[8px] uppercase tracking-widest backdrop-blur transition"
+                  style={{ borderColor: `${room.color}66`, color: room.color }}
+                  aria-label={`View ${room.agent} worktree diff`}
+                  title={`View ${room.agent} worktree diff`}
+                >
+                  Diff
+                </motion.button>
+              )}
+              <motion.button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  sfx.select?.();
+                  onClose(agentId);
+                }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="absolute right-2 top-2 z-20 flex h-6 w-6 items-center justify-center rounded-sm border border-white/30 bg-black/60 text-[11px] text-white/70 backdrop-blur transition hover:border-red-400 hover:text-red-300"
+                aria-label={`Close ${room.agent} console`}
+                title={`Close ${room.agent} console`}
+              >
+                ×
+              </motion.button>
+            </div>
+          );
+        })}
       </div>
+      <AgentDiffModal
+        open={diffFor !== null}
+        onClose={() => setDiffFor(null)}
+        agentName={diffFor?.agentName ?? ""}
+        agentColor={diffFor?.agentColor ?? "#22e8ff"}
+        cwd={diffFor?.cwd ?? null}
+      />
     </section>
   );
 }

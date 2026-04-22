@@ -58,6 +58,7 @@ export interface AgentRuntime {
   pid: number | null;
   createdAt: number;
   lastActivity: number;
+  cwd: string | null;
 }
 
 export interface UltronosAppInfo {
