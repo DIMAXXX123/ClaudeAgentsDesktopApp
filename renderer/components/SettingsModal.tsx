@@ -152,6 +152,10 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                 transition={{ duration: 0.15 }}
                 style={{ x: '-50%', y: '-50%' }}
               >
+                <Dialog.Title className="sr-only">Ultronos Settings</Dialog.Title>
+                <Dialog.Description className="sr-only">
+                  Configure Ultronos preferences, integrations, and shortcuts.
+                </Dialog.Description>
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-cyan-400/20 px-6 py-4">
                   <h2 className="pixel text-cyan-400 text-sm tracking-widest [text-shadow:_0_0_8px_#06b6d4]">

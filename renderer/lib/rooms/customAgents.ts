@@ -14,8 +14,33 @@ const STORAGE_KEY = "ultronos.customAgents.v1";
 
 // Event emitter for reactivity
 const listeners = new Set<() => void>();
+const EMPTY_SNAPSHOT: CustomAgent[] = [];
+let cachedSnapshot: CustomAgent[] = EMPTY_SNAPSHOT;
+let cachedRaw: string | null = null;
+
+function readSnapshot(): CustomAgent[] {
+  if (typeof window === "undefined") return EMPTY_SNAPSHOT;
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw === cachedRaw) return cachedSnapshot;
+  cachedRaw = raw;
+  if (!raw) {
+    cachedSnapshot = EMPTY_SNAPSHOT;
+    return cachedSnapshot;
+  }
+  try {
+    cachedSnapshot = JSON.parse(raw) as CustomAgent[];
+  } catch {
+    cachedSnapshot = EMPTY_SNAPSHOT;
+  }
+  return cachedSnapshot;
+}
+
+function invalidateSnapshot(): void {
+  cachedRaw = null;
+}
 
 function notifyListeners() {
+  invalidateSnapshot();
   listeners.forEach((fn) => fn());
 }
 
@@ -27,20 +52,11 @@ export function subscribeToCustomAgents(callback: () => void): () => void {
 }
 
 function getSnapshot(): CustomAgent[] {
-  if (typeof window === "undefined") {
-    return [];
-  }
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return [];
-    return JSON.parse(stored) as CustomAgent[];
-  } catch {
-    return [];
-  }
+  return readSnapshot();
 }
 
 function getServerSnapshot(): CustomAgent[] {
-  return [];
+  return EMPTY_SNAPSHOT;
 }
 
 export function loadCustomAgents(): CustomAgent[] {

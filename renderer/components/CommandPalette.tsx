@@ -54,6 +54,10 @@ export function CommandPalette({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0" />
         <Dialog.Content className="fixed top-[20vh] left-1/2 -translate-x-1/2 z-50 w-[min(640px,90vw)]">
+          <Dialog.Title className="sr-only">Command Palette</Dialog.Title>
+          <Dialog.Description className="sr-only">
+            Summon an agent or run a macro
+          </Dialog.Description>
           <Command className="rounded-xl border border-cyan-400/30 bg-[#05070d]/95 backdrop-blur-xl shadow-[0_0_60px_rgba(34,211,238,0.25)] overflow-hidden">
             <Command.Input
               placeholder="Summon an agent or run a macro…"
