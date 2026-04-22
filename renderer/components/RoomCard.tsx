@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { cn } from "@/lib/cn";
 import { sfx } from "@/lib/sfx";
-import { AGENTS, agentForRoom } from "@/lib/agents";
+import { AGENTS } from "@/lib/agents";
 import { useAgentActivity } from "@/lib/activityStore";
 import { useAgentProfile } from "@/lib/profileStore";
 import { useLastActivity } from "@/lib/lastActivityStore";
@@ -30,19 +30,20 @@ const ACCENT_MAP: Record<string, string> = {
 
 export function RoomCard({
   room,
+  agentId,
   isHovered,
   onHover,
   onEnter,
 }: {
   room: Room;
+  agentId: string;
   isHovered: boolean;
   onHover: (id: string | null) => void;
   onEnter: (agentId: string) => void;
 }) {
-  const agent = agentForRoom(room.name);
-  const activity = useAgentActivity(agent.id);
-  const profile = useAgentProfile(agent.id);
-  const lastAct = useLastActivity(agent.id);
+  const activity = useAgentActivity(agentId);
+  const profile = useAgentProfile(agentId);
+  const lastAct = useLastActivity(agentId);
   const working = activity === "working";
   const errored = activity === "error";
   const delegatorName = lastAct?.delegatedFrom
@@ -52,7 +53,7 @@ export function RoomCard({
   const rank = rankFromLevel(level);
   const xp = xpValue(profile.messagesSent, profile.toolsUsed);
   const prog = progressInLevel(xp, level);
-  const accentColor = ACCENT_MAP[agent.id] || "cyan-400";
+  const accentColor = ACCENT_MAP[agentId] || "cyan-400";
 
   return (
     <motion.button
@@ -64,7 +65,7 @@ export function RoomCard({
       onMouseLeave={() => onHover(null)}
       onClick={() => {
         sfx.select();
-        onEnter(agent.id);
+        onEnter(agentId);
       }}
       whileHover={{ scale: 1.02, y: -2 }}
       whileTap={{ scale: 0.98 }}
@@ -133,7 +134,7 @@ export function RoomCard({
 
       {/* Room scene */}
       <RoomScene
-        agentId={agent.id}
+        agentId={agentId}
         color={room.color}
         working={working}
         errored={errored}

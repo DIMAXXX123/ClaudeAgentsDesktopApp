@@ -28,7 +28,10 @@ function readSnapshot(): CustomAgent[] {
     return cachedSnapshot;
   }
   try {
-    cachedSnapshot = JSON.parse(raw) as CustomAgent[];
+    const parsed = JSON.parse(raw) as CustomAgent[];
+    cachedSnapshot = parsed.filter(
+      (agent) => agent && agent.id && agent.name && agent.color,
+    );
   } catch {
     cachedSnapshot = EMPTY_SNAPSHOT;
   }
@@ -66,9 +69,11 @@ export function loadCustomAgents(): CustomAgent[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return [];
-    return JSON.parse(stored) as CustomAgent[];
+    const parsed = JSON.parse(stored) as CustomAgent[];
+    return parsed.filter(
+      (agent) => agent && agent.id && agent.name && agent.color,
+    );
   } catch {
-    console.error("Failed to load custom agents from localStorage");
     return [];
   }
 }
@@ -78,12 +83,34 @@ export function saveCustomAgent(agent: CustomAgent): void {
     return;
   }
   try {
+    if (!agent.id || !agent.name || !agent.color) {
+      throw new Error(
+        `Invalid agent: missing id=${!agent.id}, name=${!agent.name}, color=${!agent.color}`
+      );
+    }
+
+    // Create a serializable version (exclude roomDef to avoid circular refs)
+    const serializableAgent = {
+      id: agent.id,
+      name: agent.name,
+      title: agent.title,
+      room: agent.room,
+      color: agent.color, // Explicitly preserve color
+      emoji: agent.emoji,
+      greeting: agent.greeting,
+      description: agent.description,
+      systemPrompt: agent.systemPrompt,
+      allowedTools: agent.allowedTools,
+      custom: agent.custom as true,
+      // roomDef is NOT serialized - it will be reconstructed on load if needed
+    } as CustomAgent;
+
     const current = loadCustomAgents();
     const index = current.findIndex((a) => a.id === agent.id);
     if (index >= 0) {
-      current[index] = agent;
+      current[index] = serializableAgent;
     } else {
-      current.push(agent);
+      current.push(serializableAgent);
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
     notifyListeners();

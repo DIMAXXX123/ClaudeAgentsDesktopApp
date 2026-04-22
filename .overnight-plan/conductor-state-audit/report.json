@@ -1,0 +1,57 @@
+{
+  "passed": 10,
+  "failed": 0,
+  "total": 10,
+  "tests": [
+    {
+      "name": "initial state: status dot is visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "initial state: status dot is emerald (idle)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "initial state: label shows READY",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "initial state: pulse animation not applied (idle has no pulse)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "working state: can transition to WORKING",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "status dot: size is correct (h-2 w-2)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "status label: font size is correct (text-[9px])",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "status label: uppercase and tracking applied",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "status: not focusable (non-interactive)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "status: has semantic color contrast",
+      "status": "ok",
+      "note": ""
+    }
+  ]
+}

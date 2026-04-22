@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-04-22T17:32:56.429Z",
+  "passed": 5,
+  "total": 5,
+  "checks": [
+    {
+      "pass": true,
+      "msg": "ListenerPanel: Buttons present"
+    },
+    {
+      "pass": true,
+      "msg": "VoiceButton: Hotkey works"
+    },
+    {
+      "pass": true,
+      "msg": "CapabilitiesPanel: All sections present"
+    },
+    {
+      "pass": true,
+      "msg": "SuggestionsPanel: 6 cards present"
+    },
+    {
+      "pass": true,
+      "msg": "ConductorPanel: Buttons present"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "failures": []
+}

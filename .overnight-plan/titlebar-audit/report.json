@@ -1,0 +1,211 @@
+{
+  "passed": 34,
+  "failed": 0,
+  "total": 34,
+  "tests": [
+    {
+      "name": "titlebar: exists and visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: has ULTRONOS branding",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: conductor status dot visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: conductor status label visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: hints text visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "galaxy: button exists and visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "galaxy: button has title",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "galaxy: button is focusable via tab",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "galaxy: button responds to click",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "galaxy: button hover state works",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "galaxy: button double-click safe",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "settings: button exists and visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "settings: button has title",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "settings: button responds to click",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "minimize: button exists and visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "minimize: button has correct title",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "minimize: button invokes IPC",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "maximize: button exists and visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "maximize: button title updates with state",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "maximize: button has proper selectors",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "close: button exists and visible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "close: button has correct title",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "close: button has red styling in class",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "conductor: idle state renders correctly",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: buttons are keyboard accessible",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: no console errors during interaction",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: respects maximize state in restored mode",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: focus ring visible on Tab navigation",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: conductor status is not clickable",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: hints text is not interactive",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: conductor phase marquee renders when present",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: status color matches state",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: windows controls are visible (non-macOS)",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    },
+    {
+      "name": "titlebar: rapid tab navigation works",
+      "status": "ok",
+      "note": "",
+      "ipcCalls": []
+    }
+  ]
+}

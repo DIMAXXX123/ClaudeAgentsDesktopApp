@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { sfx } from "@/lib/sfx";
-import { AGENTS } from "@/lib/agents";
+import { AGENTS, agentForRoom } from "@/lib/agents";
 import { useCustomAgents } from "@/lib/rooms/customAgents";
 import { RoomCard } from "./RoomCard";
 
@@ -38,31 +38,34 @@ export function RoomGrid({
 
   // Build full room registry (preset + custom), then filter to only active.
   const presetRooms: Room[] = ROOMS;
-  const customRooms: Room[] = customAgents.map((agent) => ({
-    id: agent.room.replace(/\s+/g, "-").toLowerCase(),
-    name: agent.room,
-    color: agent.color,
-    agent: agent.name,
-    emoji: agent.emoji,
-  }));
+  const customRooms: Room[] = customAgents
+    .filter((agent) => Boolean(agent.color))
+    .map((agent) => ({
+      id: agent.room.replace(/\s+/g, "-").toLowerCase(),
+      name: agent.room,
+      color: agent.color,
+      agent: agent.name,
+      emoji: agent.emoji,
+    }));
   const allRooms = [...presetRooms, ...customRooms];
 
-  const activeSet = new Set(activeAgentIds);
-  // Resolve agentId per room and keep only the active ones.
-  const visible = allRooms
-    .map((room) => {
-      const key = room.name.replace(/\s+/g, "").toLowerCase();
-      const agentEntry =
-        Object.values(AGENTS).find(
-          (a) => a.room.replace(/\s+/g, "").toLowerCase() === key,
-        ) ??
-        customAgents.find(
-          (a) => a.room.replace(/\s+/g, "").toLowerCase() === key,
-        );
-      return agentEntry ? { room, agentId: agentEntry.id } : null;
-    })
-    .filter((x): x is { room: Room; agentId: string } => Boolean(x))
-    .filter(({ agentId }) => activeSet.has(agentId));
+  const visible = useMemo(() => {
+    const activeSet = new Set(activeAgentIds);
+    // Resolve agentId per room and keep only the active ones.
+    const result = allRooms
+      .map((room) => {
+        // For custom agents, the id is already known from customAgents map
+        const custom = customAgents.find((a) => a.name === room.agent);
+        const agentId = custom?.id || agentForRoom(room.name)?.id;
+
+        return agentId && activeSet.has(agentId) ? { room, agentId } : null;
+      })
+      .filter((x): x is { room: Room; agentId: string } => Boolean(x));
+    return result;
+  }, [activeAgentIds, allRooms, customAgents]);
+
+  // Debug: show if should render cards but aren't
+  const debugMsg = visible.length > 0 ? "" : `(${activeAgentIds.length} active, ${visible.length} visible)`;
 
   if (visible.length === 0) {
     return (
@@ -73,7 +76,7 @@ export function RoomGrid({
         <div className="rounded-xl border border-dashed border-white/15 bg-white/[0.02] backdrop-blur-md px-6 py-10 text-center">
           <div className="mb-2 text-3xl opacity-40">⌘</div>
           <div className="pixel text-[11px] uppercase tracking-widest text-white/50">
-            No consoles online
+            No consoles online {debugMsg}
           </div>
           <div className="mt-2 text-[10px] uppercase tracking-widest text-white/35">
             Launch an agent from the bar above to bring a room online.
@@ -93,6 +96,7 @@ export function RoomGrid({
           <div key={agentId} className="relative">
             <RoomCard
               room={room}
+              agentId={agentId}
               isHovered={hovered === room.id}
               onHover={setHovered}
               onEnter={onFocus}

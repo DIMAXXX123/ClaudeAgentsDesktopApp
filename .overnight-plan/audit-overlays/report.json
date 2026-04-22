@@ -1,0 +1,287 @@
+{
+  "passed": 11,
+  "failed": 45,
+  "total": 56,
+  "report": [
+    {
+      "name": "settings: open via titlebar",
+      "status": "fail",
+      "note": "locator.waitFor: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Settings\"]').first() to be visible\u001b[22m\n"
+    },
+    {
+      "name": "settings: header visible",
+      "status": "fail",
+      "note": "header missing"
+    },
+    {
+      "name": "settings: tab appearance loads",
+      "status": "fail",
+      "note": "appearance tab missing"
+    },
+    {
+      "name": "settings: tab window exists",
+      "status": "fail",
+      "note": "window tab missing"
+    },
+    {
+      "name": "settings: tab notifications exists",
+      "status": "fail",
+      "note": "notifications tab missing"
+    },
+    {
+      "name": "settings: tab data exists",
+      "status": "fail",
+      "note": "data tab missing"
+    },
+    {
+      "name": "settings: tab about exists",
+      "status": "fail",
+      "note": "about tab missing"
+    },
+    {
+      "name": "settings: zoom minus button present",
+      "status": "fail",
+      "note": "zoom minus missing"
+    },
+    {
+      "name": "settings: zoom plus button present",
+      "status": "fail",
+      "note": "zoom plus missing"
+    },
+    {
+      "name": "settings: zoom value display visible",
+      "status": "fail",
+      "note": "zoom % display missing"
+    },
+    {
+      "name": "settings: zoom in increments",
+      "status": "fail",
+      "note": "locator.waitFor: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"+\")').first() to be visible\u001b[22m\n"
+    },
+    {
+      "name": "settings: zoom out decrements",
+      "status": "fail",
+      "note": "locator.waitFor: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"−\")').first() to be visible\u001b[22m\n"
+    },
+    {
+      "name": "settings: switch to window tab",
+      "status": "fail",
+      "note": "locator.waitFor: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Window\")').first() to be visible\u001b[22m\n"
+    },
+    {
+      "name": "settings: alwaysOnTop toggle visible",
+      "status": "fail",
+      "note": "locator.scrollIntoViewIfNeeded: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Always on Top').first()\u001b[22m\n"
+    },
+    {
+      "name": "settings: startMinimized toggle visible",
+      "status": "fail",
+      "note": "locator.scrollIntoViewIfNeeded: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Start Minimized').first()\u001b[22m\n"
+    },
+    {
+      "name": "settings: hideToTrayOnClose toggle visible",
+      "status": "fail",
+      "note": "locator.scrollIntoViewIfNeeded: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Hide to Tray on Close').first()\u001b[22m\n"
+    },
+    {
+      "name": "settings: toggle alwaysOnTop changes state",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "settings: switch to notifications tab",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Notifications\")').first()\u001b[22m\n"
+    },
+    {
+      "name": "settings: desktopNotifications toggle visible",
+      "status": "fail",
+      "note": "desktopNotifications missing"
+    },
+    {
+      "name": "settings: soundEffects toggle visible",
+      "status": "fail",
+      "note": "soundEffects missing"
+    },
+    {
+      "name": "settings: switch to data tab",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Data & Paths\")').first()\u001b[22m\n"
+    },
+    {
+      "name": "settings: userData path visible",
+      "status": "fail",
+      "note": "userData path input missing"
+    },
+    {
+      "name": "settings: open userData button present",
+      "status": "fail",
+      "note": "open button missing"
+    },
+    {
+      "name": "settings: open logs button present",
+      "status": "fail",
+      "note": "open logs button missing"
+    },
+    {
+      "name": "settings: open temp button present",
+      "status": "fail",
+      "note": "open temp button missing"
+    },
+    {
+      "name": "settings: switch to about tab",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"About\")').first()\u001b[22m\n"
+    },
+    {
+      "name": "settings: app version visible",
+      "status": "fail",
+      "note": "version field missing"
+    },
+    {
+      "name": "settings: github link visible",
+      "status": "fail",
+      "note": "github link missing"
+    },
+    {
+      "name": "settings: reset to defaults button visible",
+      "status": "fail",
+      "note": "reset button missing"
+    },
+    {
+      "name": "settings: relaunch button visible",
+      "status": "fail",
+      "note": "relaunch button missing"
+    },
+    {
+      "name": "settings: done button visible",
+      "status": "fail",
+      "note": "done button missing"
+    },
+    {
+      "name": "settings: close via X button",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "settings: verify modal closed",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "palette: open via Ctrl+K",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "palette: input autofocused",
+      "status": "fail",
+      "note": "input not visible"
+    },
+    {
+      "name": "palette: filter agents by typing",
+      "status": "fail",
+      "note": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[placeholder*=\"Summon\"]').first()\u001b[22m\n"
+    },
+    {
+      "name": "palette: no match message shows",
+      "status": "fail",
+      "note": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[placeholder*=\"Summon\"]').first()\u001b[22m\n"
+    },
+    {
+      "name": "palette: clear filter to show all",
+      "status": "fail",
+      "note": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[placeholder*=\"Summon\"]').first()\u001b[22m\n"
+    },
+    {
+      "name": "palette: arrow down selects item",
+      "status": "fail",
+      "note": "no selected item after arrow down"
+    },
+    {
+      "name": "palette: arrow up navigates",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "palette: enter selects item",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "palette: reopen after close",
+      "status": "fail",
+      "note": "palette did not reopen"
+    },
+    {
+      "name": "palette: agent count footer visible",
+      "status": "fail",
+      "note": "agent count missing"
+    },
+    {
+      "name": "palette: close via Escape",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "palette: verify closed after escape",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "memory: open via Ctrl+M",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "memory: header visible",
+      "status": "fail",
+      "note": "memory header missing"
+    },
+    {
+      "name": "memory: stats boxes visible",
+      "status": "fail",
+      "note": "MESSAGES stat missing"
+    },
+    {
+      "name": "memory: agent ledger section visible",
+      "status": "fail",
+      "note": "agent ledger section missing"
+    },
+    {
+      "name": "memory: activity heatmap section visible",
+      "status": "fail",
+      "note": "heatmap section missing"
+    },
+    {
+      "name": "memory: delegation matrix section visible",
+      "status": "fail",
+      "note": "delegation matrix missing"
+    },
+    {
+      "name": "memory: timeline search field visible",
+      "status": "fail",
+      "note": "search field missing"
+    },
+    {
+      "name": "memory: wipe all button visible",
+      "status": "fail",
+      "note": "wipe all button missing"
+    },
+    {
+      "name": "memory: close button visible",
+      "status": "fail",
+      "note": "close button missing"
+    },
+    {
+      "name": "memory: close via Escape",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "memory: verify closed",
+      "status": "ok",
+      "note": ""
+    }
+  ]
+}

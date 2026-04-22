@@ -1,0 +1,282 @@
+{
+  "errors": [
+    "PAGEERROR: Cannot read properties of undefined (reading 'color')"
+  ],
+  "warnings": [
+    "%cElectron Security Warning (Insecure Content-Security-Policy) font-weight: bold; This renderer process has either no Content Security\n  Policy set or a policy with \"unsafe-eval\" enabled. This exposes users of\n  this app to unnecessary security risks.\n\nFor more information and help, consult\nhttps://electronjs.org/docs/tutorial/security.\nThis warning will not show up\nonce the app is packaged.",
+    "Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.",
+    "Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}."
+  ],
+  "report": [
+    {
+      "name": "launcher: 6 presets rendered",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: Add Agent button rendered",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: OFF chip — grayscale emoji + text-white/35",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: idle chip has gray dot (not glowing)",
+      "status": "fail",
+      "note": "expected gray #3a3f4a, got rgb(58, 63, 74)"
+    },
+    {
+      "name": "launcher: idle OFF label visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: empty state header visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: no consoles message shown",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: launch ULTRON → chip → LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: LIVE chip has neon color + glow",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: LIVE chip name has neón color (not white/35)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: LIVE label green + pulse",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: ULTRON card appeared (1 card total)",
+      "status": "fail",
+      "note": "expected 1 card, got 3"
+    },
+    {
+      "name": "grid: card shows COMMAND BRIDGE room name",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: card shows emoji + level + rank badge",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: card shows XP bar (width reflects progress)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: card footer shows agent name (ULTRON)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: card has × close button (top-right)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: launch NOVA (2nd agent)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: NOVA card appeared (2 cards total)",
+      "status": "fail",
+      "note": "expected 2 cards, got 4"
+    },
+    {
+      "name": "launcher: launch FORGE (3rd agent)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: grid shows 3-col layout (3 cards)",
+      "status": "fail",
+      "note": "expected 3 cards, got 4"
+    },
+    {
+      "name": "grid: close NOVA card via × button",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: NOVA card removed (2 cards remain)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: NOVA chip returned to OFF state",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: click ULTRON card → focus (no 2nd modal)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: re-click LIVE chip → focus (no 2nd modal)",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[title*=\"Launch ULTRON console\"]').first()\u001b[22m\n"
+    },
+    {
+      "name": "add agent: open modal via launcher button",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: name input renders",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: role input renders",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: color picker + hex text input",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: vibe keywords input + Add button",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: CREATE button disabled (empty form)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: fill name",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: fill role",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: change color via picker",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: color hex input synced",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: add vibe tag via Enter",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: add 2nd vibe via button",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: remove vibe tag",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: max 5 vibe tags (Add button disables)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: CREATE button enabled (form filled)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: submit → POST /api/agents/generate-room",
+      "status": "fail",
+      "note": "PAGEERROR: Cannot read properties of undefined (reading 'color')"
+    },
+    {
+      "name": "add agent modal: custom agent saved to localStorage",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: closed after success",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: custom agent appears in launcher",
+      "status": "fail",
+      "note": "custom agent not in launcher"
+    },
+    {
+      "name": "launcher: custom agent chip is OFF (not launched)",
+      "status": "fail",
+      "note": "custom agent should start OFF"
+    },
+    {
+      "name": "launcher: launch custom agent → LIVE + grid card",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[title*=\"Launch SPECTRE console\"]').first()\u001b[22m\n"
+    },
+    {
+      "name": "grid: custom agent room card visible",
+      "status": "fail",
+      "note": "locator.waitFor: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"SPECTRE\")').nth(1) to be visible\u001b[22m\n"
+    },
+    {
+      "name": "add agent modal: open again for error test",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Add Agent\")').first()\u001b[22m\n"
+    },
+    {
+      "name": "add agent modal: CREATE disabled with empty name",
+      "status": "fail",
+      "note": "locator.clear: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[placeholder*=\"CIPHER\"]').first()\u001b[22m\n"
+    },
+    {
+      "name": "add agent modal: close via Esc",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent modal: close via X button",
+      "status": "fail",
+      "note": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Add Agent\")').first()\u001b[22m\n"
+    },
+    {
+      "name": "grid: close all agents",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: returns to empty state",
+      "status": "fail",
+      "note": "grid did not return to empty"
+    }
+  ]
+}

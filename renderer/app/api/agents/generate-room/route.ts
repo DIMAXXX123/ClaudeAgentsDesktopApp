@@ -384,10 +384,7 @@ export async function POST(req: NextRequest) {
       roomDef,
     };
 
-    return NextResponse.json({
-      agentId,
-      agent,
-    });
+    return NextResponse.json({ agentId, agent });
   } catch (e) {
     console.error("Error in generate-room:", e);
     return NextResponse.json(

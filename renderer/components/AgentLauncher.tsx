@@ -37,13 +37,15 @@ export function AgentLauncher({
 
   const entries: LauncherEntry[] = [
     ...PRESETS,
-    ...customAgents.map((a) => ({
-      id: a.id,
-      name: a.name,
-      emoji: a.emoji,
-      color: a.color,
-      title: a.title,
-    })),
+    ...customAgents
+      .filter((a) => Boolean(a.color))
+      .map((a) => ({
+        id: a.id,
+        name: a.name,
+        emoji: a.emoji,
+        color: a.color,
+        title: a.title,
+      })),
   ];
 
   return (

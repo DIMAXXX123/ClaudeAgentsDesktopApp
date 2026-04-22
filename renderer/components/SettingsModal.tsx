@@ -207,7 +207,10 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                             <SettingGroup label="Zoom">
                               <div className="flex items-center gap-4">
                                 <button
-                                  onClick={() => window.ultronos!.zoom.out()}
+                                  onClick={async () => {
+                                    const newZoom = await window.ultronos!.zoom.out() as number;
+                                    setSettings((prev) => (prev ? { ...prev, zoomFactor: newZoom } : null));
+                                  }}
                                   className="px-3 py-1.5 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/10 rounded-md text-sm font-mono transition"
                                 >
                                   −
@@ -232,7 +235,10 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                                   </span>
                                 </div>
                                 <button
-                                  onClick={() => window.ultronos!.zoom.in()}
+                                  onClick={async () => {
+                                    const newZoom = await window.ultronos!.zoom.in() as number;
+                                    setSettings((prev) => (prev ? { ...prev, zoomFactor: newZoom } : null));
+                                  }}
                                   className="px-3 py-1.5 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/10 rounded-md text-sm font-mono transition"
                                 >
                                   +

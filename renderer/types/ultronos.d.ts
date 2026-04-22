@@ -92,8 +92,11 @@ declare global {
         openExternal: (url: string) => Promise<void>;
       };
       zoom: {
-        in: () => Promise<void>;
-        out: () => Promise<void>;
+        get: () => Promise<number>;
+        set: (factor: number) => Promise<number>;
+        in: () => Promise<number>;
+        out: () => Promise<number>;
+        reset: () => Promise<number>;
       };
       windowControls: {
         minimize: () => Promise<void>;

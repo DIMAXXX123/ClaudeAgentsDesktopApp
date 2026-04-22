@@ -74,6 +74,9 @@ export function AddAgentModal({
         agentId: string;
         agent: CustomAgent;
       };
+      if (!data.agent || !data.agent.color) {
+        throw new Error("Response missing agent color");
+      }
       saveCustomAgent(data.agent);
       sfx.select();
       onCreated?.(data.agent);
@@ -162,7 +165,14 @@ export function AddAgentModal({
                 <input
                   type="text"
                   value={color}
-                  onChange={(e) => setColor(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    // Only update if valid hex or empty
+                    if (/^#[0-9a-f]{6}$/i.test(val) || val === '') {
+                      setColor(val || '#22e8ff');
+                    }
+                  }}
+                  placeholder="#22e8ff"
                   disabled={loading}
                   className={cn(
                     "flex-1 px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-white placeholder-white/30",
