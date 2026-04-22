@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { TitleBarHost } from "@/components/TitleBarHost";
 import { RoomGrid } from "@/components/RoomGrid";
+import { AgentLauncher } from "@/components/AgentLauncher";
 import { SuggestionsPanel } from "@/components/SuggestionsPanel";
 import { ChatModal } from "@/components/ChatModal";
 import { CommandPalette } from "@/components/CommandPalette";
@@ -128,7 +129,15 @@ export default function Page() {
           center={
             <div className="h-full overflow-auto px-6 py-5">
               <div className="mx-auto w-full max-w-6xl space-y-6">
-                <RoomGrid onEnter={(id) => openAgent(id)} />
+                <AgentLauncher
+                  activeIds={activeAgents.map((a) => a.id)}
+                  onLaunch={(id) => openAgent(id)}
+                />
+                <RoomGrid
+                  activeAgentIds={activeAgents.map((a) => a.id)}
+                  onFocus={(id) => openAgent(id)}
+                  onClose={(id) => closeAgent(id)}
+                />
                 <SuggestionsPanel onRun={(id, prompt) => openAgent(id, prompt)} />
               </div>
             </div>

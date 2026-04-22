@@ -246,14 +246,36 @@ async function shoot(page, name) {
     await page.waitForTimeout(200);
   });
 
-  // === Room grid ===
-  await step('room grid: click ULTRON card', async () => {
-    const card = page.locator('button:has-text("COMMAND BRIDGE")').first();
-    await card.waitFor({ state: 'visible', timeout: 2000 });
-    await card.click();
-    await page.waitForTimeout(600);
+  // === Gating: empty grid + launcher chip ===
+  await step('room grid: empty state at boot', async () => {
+    const empty = await page.locator('text=No consoles online').first().isVisible().catch(() => false);
+    if (!empty) throw new Error('expected empty state visible by default');
+  });
+
+  await step('launcher: ULTRON chip shows OFF', async () => {
+    const chip = page.locator('button[title*="Launch ULTRON console"]').first();
+    await chip.waitFor({ state: 'visible', timeout: 2000 });
+    const txt = (await chip.innerText()).toUpperCase();
+    if (!txt.includes('OFF')) throw new Error('chip should show OFF when console down: ' + txt);
+  });
+
+  await step('launcher: click ULTRON chip → console boots', async () => {
+    await page.locator('button[title*="Launch ULTRON console"]').first().click();
+    await page.waitForTimeout(700);
+    const liveChip = await page
+      .locator('button[title*="ULTRON console open"]')
+      .first()
+      .isVisible()
+      .catch(() => false);
+    if (!liveChip) throw new Error('ULTRON chip did not flip to LIVE');
   });
   await shoot(page, '20-chatmodal-ultron');
+
+  await step('room grid: ULTRON card appears in active grid', async () => {
+    // Card lives inside RoomGrid (button with COMMAND BRIDGE label).
+    const card = page.locator('section:has-text("ACTIVE CONSOLES") button:has-text("COMMAND BRIDGE")').first();
+    await card.waitFor({ state: 'visible', timeout: 2000 });
+  });
 
   await step('chat modal: send form rendered', async () => {
     await page.locator('button[type="submit"]:has-text("SEND")').first().waitFor({ state: 'visible', timeout: 3000 });
@@ -270,6 +292,13 @@ async function shoot(page, name) {
     const closeBtn = page.locator('.chat-modal-titlebar button').last();
     await closeBtn.click();
     await page.waitForTimeout(400);
+  });
+
+  await step('after close: grid returns to empty state', async () => {
+    const empty = await page.locator('text=No consoles online').first().isVisible().catch(() => false);
+    if (!empty) throw new Error('expected empty state after closing modal');
+    const offChip = await page.locator('button[title*="Launch ULTRON console"]').first().isVisible().catch(() => false);
+    if (!offChip) throw new Error('ULTRON chip should flip back to OFF');
   });
 
   // === Add Agent Modal ===
