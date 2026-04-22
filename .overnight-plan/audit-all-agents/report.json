@@ -1,0 +1,180 @@
+{
+  "errors": [],
+  "report": [
+    {
+      "name": "baseline: empty grid",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: 6 preset chips rendered",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ultron: launch chip flips to LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ultron: card visible in grid (room=COMMAND BRIDGE)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ultron: chat modal opens with SEND visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ultron: header X closes chat + deactivates console",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ultron: chip returns to OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "nova: launch chip flips to LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "nova: card visible in grid (room=CODEX ARCHIVE)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "nova: chat modal opens with SEND visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "nova: header X closes chat + deactivates console",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "nova: chip returns to OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "forge: launch chip flips to LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "forge: card visible in grid (room=CODE FOUNDRY)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "forge: chat modal opens with SEND visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "forge: header X closes chat + deactivates console",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "forge: chip returns to OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ares: launch chip flips to LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ares: card visible in grid (room=WAR DECK)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ares: chat modal opens with SEND visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ares: header X closes chat + deactivates console",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "ares: chip returns to OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "echo: launch chip flips to LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "echo: card visible in grid (room=SIGNAL RELAY)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "echo: chat modal opens with SEND visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "echo: header X closes chat + deactivates console",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "echo: chip returns to OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "midas: launch chip flips to LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "midas: card visible in grid (room=DATA VAULT)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "midas: chat modal opens with SEND visible",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "midas: header X closes chat + deactivates console",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "midas: chip returns to OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "multi: three sequential launches leave last one LIVE",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "teardown: close all remaining chats",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "final: grid returns to empty",
+      "status": "ok",
+      "note": ""
+    }
+  ]
+}
