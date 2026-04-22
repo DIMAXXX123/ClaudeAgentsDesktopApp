@@ -207,7 +207,7 @@ export function useVoice() {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if ((e.code === 'Space' || e.code === 'Backquote') && !e.ctrlKey) {
+      if ((e.code === 'Space' || e.code === 'Backquote') && e.ctrlKey) {
         if (state.isRecording) {
           e.preventDefault();
           stopRecording().catch((err) => {
