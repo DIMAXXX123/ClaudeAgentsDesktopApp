@@ -11,6 +11,7 @@ export interface AgentRuntime {
   createdAt: number;
   lastActivity: number;
   claudeSessionId: string | null;
+  cwd: string | null;
 }
 
 type AgentOutputEvent =
@@ -44,9 +45,13 @@ class AgentRegistryManager {
   private runtimes: Map<string, AgentRuntime> = new Map();
   private writeQueues: Map<string, Promise<void>> = new Map();
 
-  spawnAgent(agentId: string, _opts?: { systemPrompt?: string }): AgentRuntime {
+  spawnAgent(
+    agentId: string,
+    opts?: { systemPrompt?: string; cwd?: string },
+  ): AgentRuntime {
     const sessionId = this.generateSessionId();
     const now = Date.now();
+    void opts?.systemPrompt;
 
     const runtime: AgentRuntime = {
       sessionId,
@@ -57,13 +62,14 @@ class AgentRegistryManager {
       createdAt: now,
       lastActivity: now,
       claudeSessionId: null,
+      cwd: opts?.cwd ?? null,
     };
 
     this.runtimes.set(sessionId, runtime);
     this.enqueueTranscriptWrite(agentId, sessionId, {
       ts: now,
       kind: 'status',
-      data: `session created for agent=${agentId}`,
+      data: `session created for agent=${agentId}${runtime.cwd ? ` cwd=${runtime.cwd}` : ''}`,
     });
     broadcastStatus(sessionId, agentId, 'idle');
 
@@ -108,6 +114,7 @@ class AgentRegistryManager {
       proc = spawn(CLAUDE_BIN, args, {
         stdio: ['ignore', 'pipe', 'pipe'],
         shell: false,
+        cwd: runtime.cwd ?? undefined,
         env: {
           PATH: process.env.PATH,
           HOME: process.env.HOME,
@@ -313,10 +320,17 @@ class AgentRegistryManager {
     });
   }
 
-  async restartAgent(agentId: string, opts?: { systemPrompt?: string }): Promise<AgentRuntime> {
-    const toKill = Array.from(this.runtimes.values()).filter((r) => r.agentId === agentId);
-    for (const rt of toKill) await this.killAgent(rt.sessionId);
-    return this.spawnAgent(agentId, opts);
+  async restartAgent(
+    agentId: string,
+    opts?: { systemPrompt?: string; cwd?: string },
+  ): Promise<AgentRuntime> {
+    const existing = Array.from(this.runtimes.values()).filter((r) => r.agentId === agentId);
+    const inheritedCwd = existing.find((r) => r.cwd)?.cwd ?? undefined;
+    for (const rt of existing) await this.killAgent(rt.sessionId);
+    return this.spawnAgent(agentId, {
+      systemPrompt: opts?.systemPrompt,
+      cwd: opts?.cwd ?? inheritedCwd,
+    });
   }
 
   getRuntime(sessionId: string): AgentRuntime | undefined {

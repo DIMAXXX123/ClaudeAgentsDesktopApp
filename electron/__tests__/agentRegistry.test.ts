@@ -196,6 +196,34 @@ describe('AgentRegistry', () => {
     expect(r2.sessionId).toBeTruthy();
   });
 
+  it('records cwd on the runtime when supplied', () => {
+    const cwd = '/tmp/worktrees/echo-99';
+    const runtime = agentRegistry.spawnAgent('echo', { cwd });
+    expect(runtime.cwd).toBe(cwd);
+    expect(agentRegistry.getRuntime(runtime.sessionId)?.cwd).toBe(cwd);
+  });
+
+  it('inherits cwd on restart when caller does not override it', async () => {
+    const cwd = '/tmp/worktrees/forge-77';
+    const old = agentRegistry.spawnAgent('forge', { cwd });
+    agentRegistry['runtimes'].get(old.sessionId)!.process = {
+      killed: false,
+      pid: 1,
+      kill() {
+        // emulate immediate exit
+      },
+      on(event: string, cb: (code: number) => void) {
+        if (event === 'exit') setTimeout(() => cb(0), 1);
+        return this;
+      },
+      stdout: new Writable({ write: () => {} }),
+      stderr: new Writable({ write: () => {} }),
+    } as unknown as ChildProcess;
+
+    const fresh = await agentRegistry.restartAgent('forge');
+    expect(fresh.cwd).toBe(cwd);
+  });
+
   it('should cleanup all agents on killAll', async () => {
     agentRegistry.spawnAgent('ultron');
     agentRegistry.spawnAgent('nova');

@@ -1,4 +1,3 @@
-import * as path from 'path';
 import { agentRegistry, AgentRuntime } from './agentRegistry';
 import { createWorktreeManager } from './worktreeManager';
 
@@ -22,33 +21,22 @@ class AgentWorktreeBridge {
   /**
    * Spawn an agent with optional worktree isolation.
    */
-  async spawnWithIsolation(agentId: string, opts?: { isolated?: boolean; repoPath?: string; systemPrompt?: string }): Promise<AgentRuntime> {
+  async spawnWithIsolation(
+    agentId: string,
+    opts?: { isolated?: boolean; repoPath?: string; systemPrompt?: string },
+  ): Promise<AgentRuntime> {
     if (!opts?.isolated) {
-      // No isolation — spawn normally
       return agentRegistry.spawnAgent(agentId, { systemPrompt: opts?.systemPrompt });
     }
 
-    // Create worktree
     const repoPath = opts.repoPath || process.cwd();
-    let worktreePath: string;
+    const { worktreePath } = await this.worktreeManager.createWorktree(repoPath, agentId);
+    this.worktreeMap.set(agentId, { path: worktreePath, repoPath });
 
-    try {
-      const result = await this.worktreeManager.createWorktree(repoPath, agentId);
-      worktreePath = result.worktreePath;
-      this.worktreeMap.set(agentId, { path: worktreePath, repoPath });
-    } catch (err) {
-      console.error(`[agentWorktreeBridge] Failed to create worktree for ${agentId}:`, err);
-      throw err;
-    }
-
-    // Spawn with worktree cwd
-    const runtime = agentRegistry.spawnAgent(agentId, { systemPrompt: opts?.systemPrompt });
-
-    // TODO: Update runtime.process to use worktreePath as cwd
-    // This requires modifying agentRegistry.spawnAgent to accept cwd option
-    // For now, worktree is created but process cwd is not set
-
-    return runtime;
+    return agentRegistry.spawnAgent(agentId, {
+      systemPrompt: opts?.systemPrompt,
+      cwd: worktreePath,
+    });
   }
 
   /**
