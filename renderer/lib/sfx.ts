@@ -5,12 +5,21 @@ let muted = false;
 
 function getCtx() {
   if (typeof window === "undefined") return null;
-  if (!ctx) {
-    const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    ctx = new AC();
+  try {
+    if (!ctx) {
+      const AC =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+    }
+    if (ctx.state === "suspended") {
+      ctx.resume().catch(() => undefined);
+    }
+    return ctx;
+  } catch {
+    return null;
   }
-  if (ctx.state === "suspended") ctx.resume();
-  return ctx;
 }
 
 function beep({
@@ -29,18 +38,22 @@ function beep({
   if (muted) return;
   const ac = getCtx();
   if (!ac) return;
-  const osc = ac.createOscillator();
-  const g = ac.createGain();
-  osc.type = type;
-  osc.frequency.setValueAtTime(freq, ac.currentTime);
-  if (sweepTo) {
-    osc.frequency.exponentialRampToValueAtTime(sweepTo, ac.currentTime + dur);
+  try {
+    const osc = ac.createOscillator();
+    const g = ac.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ac.currentTime);
+    if (sweepTo) {
+      osc.frequency.exponentialRampToValueAtTime(sweepTo, ac.currentTime + dur);
+    }
+    g.gain.setValueAtTime(gain, ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+    osc.connect(g).connect(ac.destination);
+    osc.start();
+    osc.stop(ac.currentTime + dur);
+  } catch {
+    // Autoplay policy / suspended context — silently ignore.
   }
-  g.gain.setValueAtTime(gain, ac.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
-  osc.connect(g).connect(ac.destination);
-  osc.start();
-  osc.stop(ac.currentTime + dur);
 }
 
 export const sfx = {

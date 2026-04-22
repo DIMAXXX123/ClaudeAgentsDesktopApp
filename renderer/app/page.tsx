@@ -87,9 +87,7 @@ export default function Page() {
   const openAgent = (agentId: string, prompt?: string) => {
     setActiveAgents((prev) => {
       const existing = prev.find((a) => a.id === agentId);
-      if (existing) {
-        return prev;
-      }
+      if (existing) return prev;
       return [...prev, { id: agentId, prompt }];
     });
   };

@@ -102,20 +102,25 @@ function createWindow(url: string): void {
     mainWindow = null;
   });
 
-  // Open DevTools in dev mode
-  if (isDev) {
-    mainWindow.webContents.openDevTools();
+  // Open DevTools in dev mode (unless suppressed for automated tests).
+  if (isDev && !process.env.ULTRONOS_NO_DEVTOOLS) {
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
   }
 }
 
 function setupCSP(): void {
+  // Next.js dev bundles rely on `eval()` for Fast Refresh; production bundles don't.
+  // Allow 'unsafe-eval' only in dev so the renderer can actually hydrate.
+  const scriptSrc = isDev
+    ? "script-src 'self' 'unsafe-eval' 'unsafe-inline' http://127.0.0.1:*; "
+    : "script-src 'self' http://127.0.0.1:*; ";
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
           "default-src 'self'; " +
-            "script-src 'self' http://127.0.0.1:*; " +
+            scriptSrc +
             "style-src 'self' 'unsafe-inline' http://127.0.0.1:*; " +
             "img-src 'self' data: http://127.0.0.1:* https:; " +
             "connect-src 'self' http://127.0.0.1:* ws://127.0.0.1:*; " +

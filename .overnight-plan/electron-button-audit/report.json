@@ -1,0 +1,105 @@
+{
+  "errors": [],
+  "warnings": [
+    "%cElectron Security Warning (Insecure Content-Security-Policy) font-weight: bold; This renderer process has either no Content Security\n  Policy set or a policy with \"unsafe-eval\" enabled. This exposes users of\n  this app to unnecessary security risks.\n\nFor more information and help, consult\nhttps://electronjs.org/docs/tutorial/security.\nThis warning will not show up\nonce the app is packaged.",
+    "Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.",
+    "Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}."
+  ],
+  "report": [
+    {
+      "name": "titlebar: open Galaxy",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "titlebar: close Galaxy (X)",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "titlebar: open Settings",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "titlebar: close Settings",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "titlebar: window controls present",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "shortcut: ⌘K palette",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "shortcut: ⌘M memory",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "shortcut: ⌘G galaxy toggle",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: empty state by default",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: ULTRON chip OFF",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "launcher: launch ULTRON",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: ULTRON card visible in grid",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "chat modal: SEND visible, STOP hidden",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "chat modal: NEW button reachable",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "chat modal: close via header X",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "grid: returns to empty after close",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "add agent: open modal",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "sidebar: Listener tab",
+      "status": "ok",
+      "note": ""
+    },
+    {
+      "name": "sidebar: Conductor tab",
+      "status": "ok",
+      "note": ""
+    }
+  ]
+}
