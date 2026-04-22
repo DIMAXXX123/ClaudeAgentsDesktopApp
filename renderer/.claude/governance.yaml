@@ -1,0 +1,35 @@
+version: 1
+protected_paths:
+  - .env
+  - .env.*
+  - node_modules/**
+  - .next/**
+  - package.json
+  - package-lock.json
+  - bun.lock
+  - lib/agents.ts
+  - app/api/chat/**
+  - app/api/conductor/**
+  - .overnight-plan/**
+  - .claude/**
+
+readonly:
+  - lib/agents.ts
+  - app/api/chat/**
+  - app/api/conductor/**
+
+forbid_commands:
+  - "next dev"
+  - "next start"
+  - "npm run dev"
+  - "bun run dev"
+  - "rm -rf"
+  - "taskkill"
+  - "Stop-Process"
+  - "pkill -f simple_bot"
+  - "pkill -f python"
+  - "pkill -f pythonw"
+
+notes:
+  - Overnight CONDUCTOR system. Slot agents MUST NOT touch protected paths; if required they return `BLOCKED: <path>` and exit.
+  - SCOUT is confined to WebSearch/WebFetch + appending to .overnight-plan/scout-feed.jsonl.

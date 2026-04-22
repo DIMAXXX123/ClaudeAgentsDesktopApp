@@ -1,0 +1,6 @@
+node_modules/
+.next/
+.overnight-plan/snapshots/
+.overnight-plan/locks/
+.overnight-plan/tick-logs/
+tsconfig.tsbuildinfo
