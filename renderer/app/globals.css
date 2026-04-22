@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --font-pixel: "Press Start 2P", "Courier New", monospace;
-  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --font-pixel: var(--font-pixel-src), "Press Start 2P", "Courier New", monospace;
+  --font-mono: var(--font-mono-src), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-terminal: var(--font-vt323), "VT323", "Courier New", monospace;
 }
 
 html,
